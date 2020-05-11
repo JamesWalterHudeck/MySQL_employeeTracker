@@ -13,6 +13,8 @@ function init() {
 
   loadMainPrompts();
 }
+
+//Creates a list of prompts that a user will choose
 async function loadMainPrompts() {
   const { choice } = await prompt([
     {
@@ -98,6 +100,10 @@ async function loadMainPrompts() {
       return quit();
   }
 }
+
+//Whichever prompt a user chooses will direct them to one of the following functions
+
+// View Employees Prompt
 async function viewEmployees() {
   const employees = await db.findAllEmployees();
 
@@ -106,6 +112,8 @@ async function viewEmployees() {
 
   loadMainPrompts();
 }
+
+//View Department Propmt
 async function viewDepartment() {
   const departments = await db.findAllDepartments();
 
@@ -114,6 +122,8 @@ async function viewDepartment() {
 
   loadMainPrompts();
 }
+
+//View Roles Prompt
 async function viewRoles() {
   const roles = await db.findAllRoles();
 
@@ -122,6 +132,8 @@ async function viewRoles() {
 
   loadMainPrompts();
 }
+
+//Add Employee Prompt
 async function addEmployee() {
   const roles = await db.findAllRoles();
   const employees = await db.findAllEmployees();
@@ -174,6 +186,8 @@ async function addEmployee() {
 
   loadMainPrompts();
 }
+
+//Add Department Prompt
 async function addDepartment() {
   const departments = await db.findAllDepartments();
   const departmentChoices = departments.map(({ id, name }) => (
@@ -192,6 +206,8 @@ async function addDepartment() {
 
 
 }
+
+//Add Role Prompt
 async function addRole() {
   const departments = await db.findAllDepartments();
   const departmentChoices = departments.map(({ id, name }) => (
@@ -218,6 +234,8 @@ async function addRole() {
   await db.createRole(role);
   console.log("Added $(role.title) to the database")
 }
+
+//Remove Employee Prompt
 async function removeEmployee() {
   const employees = await db.findAllEmployees();
 
@@ -241,6 +259,8 @@ async function removeEmployee() {
 
   loadMainPrompts();
 }
+
+//Remove Department Prompt
 async function removeDepartment() {
   const departments = await db.findAllDepartments();
 
@@ -264,6 +284,8 @@ async function removeDepartment() {
 
   loadMainPrompts();
 }
+
+//Remove Role Prompt
 async function removeRole() {
   const roles = await db.findAllRoles();
 
@@ -287,6 +309,8 @@ async function removeRole() {
 
   loadMainPrompts();
 }
+
+//Update Employee Prompt
 async function updateEmployeeRole() {
   const employees = await db.findAllEmployees();
 
@@ -326,6 +350,8 @@ async function updateEmployeeRole() {
 
   loadMainPrompts();
 }
+
+//Update Employee Manager Prompt
 async function updateEmployeeManager(){
   const employees = await db.findAllEmployees();
 
@@ -363,6 +389,8 @@ async function updateEmployeeManager(){
 
   loadMainPrompts();
 }
+
+//Quit Prompt
 function quit() {
   console.log("Goodbye!");
   process.exit();
